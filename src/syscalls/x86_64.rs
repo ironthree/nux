@@ -285,6 +285,26 @@ pub unsafe fn pread(fd: u32, buf: *mut u8, count: usize, pos: i64) -> i64 {
     ret
 }
 
+pub unsafe fn pwrite(fd: u32, buf: *const u8, count: usize, pos: i64) -> i64 {
+    let syscall = numbers::PWRITE64;
+    let ret: i64;
+
+    asm!(
+    "syscall",
+    in("rax") syscall,
+    in("rdi") fd,
+    in("rsi") buf,
+    in("rdx") count,
+    in("r10") pos,
+    lateout("rax") ret,
+    lateout("rcx") _,
+    lateout("r11") _,
+    options(nostack),
+    );
+
+    ret
+}
+
 pub unsafe fn getpid() -> u32 {
     let syscall = numbers::GETPID;
     let ret: u32;
