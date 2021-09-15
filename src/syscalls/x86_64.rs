@@ -162,6 +162,7 @@ pub unsafe fn lseek(fd: u32, offset: i64, whence: i32) -> i64 {
     ret
 }
 
+// TODO: define mmap flags: MAP_*
 pub unsafe fn mmap(addr: *mut u8, length: usize, prot: i32, flags: i32, fd: u32, offset: i64) -> *mut u8 {
     let ret: *mut u8;
 
@@ -183,6 +184,7 @@ pub unsafe fn mmap(addr: *mut u8, length: usize, prot: i32, flags: i32, fd: u32,
     ret
 }
 
+// TODO: define mprotect flags: PROT_*
 pub unsafe fn mprotect(addr: *mut u8, length: usize, prot: i32) -> i32 {
     let ret: i32;
 
@@ -338,6 +340,7 @@ pub unsafe fn sched_yield() -> i32 {
     ret
 }
 
+// TODO: define msync flags: MS_*
 pub unsafe fn msync(addr: *mut u8, length: usize, flags: i32) -> i32 {
     let ret: i32;
 
@@ -365,6 +368,25 @@ pub unsafe fn mincore(addr: *const u8, length: usize, vec: *mut u8) -> i32 {
     in("rdi") addr,
     in("rsi") length,
     in("rdx") vec,
+    lateout("rax") ret,
+    lateout("rcx") _,
+    lateout("r11") _,
+    options(nostack),
+    );
+
+    ret
+}
+
+// TODO: define shmget flags: IPC_*, SHM_*
+pub unsafe fn shmget(key: i32, size: usize, shmflg: i32) -> i32 {
+    let ret: i32;
+
+    asm!(
+    "syscall",
+    in("rax") numbers::SHMGET,
+    in("rdi") key,
+    in("rsi") size,
+    in("rdx") shmflg,
     lateout("rax") ret,
     lateout("rcx") _,
     lateout("r11") _,
