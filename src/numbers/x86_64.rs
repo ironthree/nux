@@ -28,6 +28,7 @@ pub const MINCORE       : u64 = 27;
 pub const SHMGET        : u64 = 29;
 pub const SHMAT         : u64 = 30;
 pub const GETPID        : u64 = 39;
+pub const SHMDT         : u64 = 67;
 pub const FSYNC         : u64 = 74;
 
 // Not implemented (as of linux 5.13.15):
@@ -78,7 +79,6 @@ __NR_uname 63
 __NR_semget 64
 __NR_semop 65
 __NR_semctl 66
-__NR_shmdt 67
 __NR_msgget 68
 __NR_msgsnd 69
 __NR_msgrcv 70

@@ -429,6 +429,22 @@ pub unsafe fn getpid() -> u32 {
     ret
 }
 
+pub unsafe fn shmdt(shmaddr: *const u8) -> i32 {
+    let ret: i32;
+
+    asm!(
+    "syscall",
+    in("rax") numbers::SHMDT,
+    in("rdi") shmaddr,
+    lateout("rax") ret,
+    lateout("rcx") _,
+    lateout("r11") _,
+    options(nostack),
+    );
+
+    ret
+}
+
 pub unsafe fn fsync(fd: u32) -> i32 {
     let ret: i32;
 
