@@ -20,6 +20,7 @@ pub const IOCTL     : u64 = 16;
 pub const PREAD64   : u64 = 17;
 // renamed pwrite -> pwrite64 in linux 2.6
 pub const PWRITE64  : u64 = 18;
+pub const ACCESS    : u64 = 21;
 pub const GETPID    : u64 = 39;
 pub const FSYNC     : u64 = 74;
 
@@ -32,7 +33,6 @@ __NR_rt_sigprocmask 14
 __NR_rt_sigreturn 15
 __NR_readv 19
 __NR_writev 20
-__NR_access 21
 __NR_pipe 22
 __NR_select 23
 __NR_sched_yield 24

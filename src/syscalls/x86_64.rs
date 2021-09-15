@@ -305,6 +305,24 @@ pub unsafe fn pwrite(fd: u32, buf: *const u8, count: usize, pos: i64) -> i64 {
     ret
 }
 
+pub unsafe fn access(filename: *const u8, mode: u32) -> i32 {
+    let syscall = numbers::ACCESS;
+    let ret: i32;
+
+    asm!(
+    "syscall",
+    in("rax") syscall,
+    in("rdi") filename,
+    in("rsi") mode,
+    lateout("rax") ret,
+    lateout("rcx") _,
+    lateout("r11") _,
+    options(nostack),
+    );
+
+    ret
+}
+
 pub unsafe fn getpid() -> u32 {
     let syscall = numbers::GETPID;
     let ret: u32;
