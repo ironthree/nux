@@ -16,6 +16,8 @@ pub const MPROTECT  : u64 = 10;
 pub const MUNMAP    : u64 = 11;
 pub const BRK       : u64 = 12;
 pub const IOCTL     : u64 = 16;
+// renamed pread -> pread64 in linux 2.6
+pub const PREAD64   : u64 = 17;
 pub const GETPID    : u64 = 39;
 pub const FSYNC     : u64 = 74;
 
@@ -26,7 +28,6 @@ __NR_poll 7
 __NR_rt_sigaction 13
 __NR_rt_sigprocmask 14
 __NR_rt_sigreturn 15
-__NR_pread64 17 // renamed in linux 2.6
 __NR_pwrite64 18 // renamed in linux 2.6
 __NR_readv 19
 __NR_writev 20

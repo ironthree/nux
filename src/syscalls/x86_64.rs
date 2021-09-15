@@ -267,6 +267,26 @@ pub unsafe fn ioctl(fd: u32, cmd: u32, arg: u64) -> i32 {
     ret
 }
 
+pub unsafe fn pread(fd: u32, buf: *mut u8, count: usize, pos: i64) -> i64 {
+    let syscall = numbers::PREAD64;
+    let ret: i64;
+
+    asm!(
+    "syscall",
+    in("rax") syscall,
+    in("rdi") fd,
+    in("rsi") buf,
+    in("rdx") count,
+    in("r10") pos,
+    lateout("rax") ret,
+    lateout("rcx") _,
+    lateout("r11") _,
+    options(nostack),
+    );
+
+    ret
+}
+
 pub unsafe fn getpid() -> u32 {
     let syscall = numbers::GETPID;
     let ret: u32;
