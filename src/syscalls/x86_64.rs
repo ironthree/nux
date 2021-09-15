@@ -356,6 +356,25 @@ pub unsafe fn sched_yield() -> i32 {
     ret
 }
 
+pub unsafe fn msync(addr: *mut u8, length: usize, flags: i32) -> i32 {
+    let syscall = numbers::MSYNC;
+    let ret: i32;
+
+    asm!(
+    "syscall",
+    in("rax") syscall,
+    in("rdi") addr,
+    in("rsi") length,
+    in("rdx") flags,
+    lateout("rax") ret,
+    lateout("rcx") _,
+    lateout("r11") _,
+    options(nostack),
+    );
+
+    ret
+}
+
 pub unsafe fn getpid() -> u32 {
     let syscall = numbers::GETPID;
     let ret: u32;
