@@ -323,6 +323,23 @@ pub unsafe fn access(filename: *const u8, mode: u32) -> i32 {
     ret
 }
 
+pub unsafe fn pipe(pipefd: *mut [u32; 2]) -> i32 {
+    let syscall = numbers::PIPE;
+    let ret: i32;
+
+    asm!(
+    "syscall",
+    in("rax") syscall,
+    in("rdi") pipefd,
+    lateout("rax") ret,
+    lateout("rcx") _,
+    lateout("r11") _,
+    options(nostack),
+    );
+
+    ret
+}
+
 pub unsafe fn getpid() -> u32 {
     let syscall = numbers::GETPID;
     let ret: u32;
