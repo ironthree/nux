@@ -3,27 +3,28 @@
 //! This module contains definitions of system call numbers as they are defined
 //! for `x86_64` / `AMD64` in `<asm/unistd_64.h>` from the linux kernel headers.
 
-pub const READ      : u64 =  0;
-pub const WRITE     : u64 =  1;
-pub const OPEN      : u64 =  2;
-pub const CLOSE     : u64 =  3;
-pub const STAT      : u64 =  4;
-pub const FSTAT     : u64 =  5;
-pub const LSTAT     : u64 =  6;
-pub const LSEEK     : u64 =  8;
-pub const MMAP      : u64 =  9;
-pub const MPROTECT  : u64 = 10;
-pub const MUNMAP    : u64 = 11;
-pub const BRK       : u64 = 12;
-pub const IOCTL     : u64 = 16;
+pub const READ          : u64 =  0;
+pub const WRITE         : u64 =  1;
+pub const OPEN          : u64 =  2;
+pub const CLOSE         : u64 =  3;
+pub const STAT          : u64 =  4;
+pub const FSTAT         : u64 =  5;
+pub const LSTAT         : u64 =  6;
+pub const LSEEK         : u64 =  8;
+pub const MMAP          : u64 =  9;
+pub const MPROTECT      : u64 = 10;
+pub const MUNMAP        : u64 = 11;
+pub const BRK           : u64 = 12;
+pub const IOCTL         : u64 = 16;
 // renamed pread -> pread64 in linux 2.6
-pub const PREAD64   : u64 = 17;
+pub const PREAD64       : u64 = 17;
 // renamed pwrite -> pwrite64 in linux 2.6
-pub const PWRITE64  : u64 = 18;
-pub const ACCESS    : u64 = 21;
-pub const PIPE      : u64 = 22;
-pub const GETPID    : u64 = 39;
-pub const FSYNC     : u64 = 74;
+pub const PWRITE64      : u64 = 18;
+pub const ACCESS        : u64 = 21;
+pub const PIPE          : u64 = 22;
+pub const SCHED_YIELD   : u64 = 24;
+pub const GETPID        : u64 = 39;
+pub const FSYNC         : u64 = 74;
 
 // Not implemented (as of linux 5.13.15):
 
@@ -35,7 +36,6 @@ __NR_rt_sigreturn 15
 __NR_readv 19
 __NR_writev 20
 __NR_select 23
-__NR_sched_yield 24
 __NR_mremap 25
 __NR_msync 26
 __NR_mincore 27

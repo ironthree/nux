@@ -340,6 +340,22 @@ pub unsafe fn pipe(pipefd: *mut [u32; 2]) -> i32 {
     ret
 }
 
+pub unsafe fn sched_yield() -> i32 {
+    let syscall = numbers::SCHED_YIELD;
+    let ret: i32;
+
+    asm!(
+    "syscall",
+    in("rax") syscall,
+    lateout("rax") ret,
+    lateout("rcx") _,
+    lateout("r11") _,
+    options(nostack),
+    );
+
+    ret
+}
+
 pub unsafe fn getpid() -> u32 {
     let syscall = numbers::GETPID;
     let ret: u32;
