@@ -5,16 +5,17 @@
 //! arguments), with return values that are easy to check for errors, and
 //! that don't have any unwanted side effects.
 
-use super::syscalls;
+#[cfg(target_arch = "x86_64")]
+mod x86_64;
 
-#[test]
-fn sched_yield() {
-    let ret = unsafe { syscalls::sched_yield() };
-    assert_eq!(ret, 0);
-}
+#[cfg(target_arch = "x86")]
+mod x86;
 
-#[test]
-fn getpid() {
-    let pid = unsafe { syscalls::getpid() };
-    assert!(pid as i32 > 0);
-}
+#[cfg(target_arch = "aarch64")]
+mod aarch64;
+
+#[cfg(target_arch = "arm")]
+mod arm;
+
+#[cfg(target_arch = "powerpc64")]
+mod powerpc64;
