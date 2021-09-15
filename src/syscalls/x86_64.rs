@@ -396,6 +396,24 @@ pub unsafe fn shmget(key: i32, size: usize, shmflg: i32) -> i32 {
     ret
 }
 
+pub unsafe fn shmat(shmid: i32, shmaddr: *mut u8, shmflg: i32) -> *mut u8 {
+    let ret: *mut u8;
+
+    asm!(
+    "syscall",
+    in("rax") numbers::SHMAT,
+    in("rdi") shmid,
+    in("rsi") shmaddr,
+    in("rdx") shmflg,
+    lateout("rax") ret,
+    lateout("rcx") _,
+    lateout("r11") _,
+    options(nostack),
+    );
+
+    ret
+}
+
 pub unsafe fn getpid() -> u32 {
     let ret: u32;
 

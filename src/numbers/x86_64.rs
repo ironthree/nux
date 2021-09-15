@@ -26,6 +26,7 @@ pub const SCHED_YIELD   : u64 = 24;
 pub const MSYNC         : u64 = 26;
 pub const MINCORE       : u64 = 27;
 pub const SHMGET        : u64 = 29;
+pub const SHMAT         : u64 = 30;
 pub const GETPID        : u64 = 39;
 pub const FSYNC         : u64 = 74;
 
@@ -41,7 +42,6 @@ __NR_writev 20
 __NR_select 23
 __NR_mremap 25
 __NR_madvise 28
-__NR_shmat 30
 __NR_shmctl 31
 __NR_dup 32
 __NR_dup2 33
