@@ -11,6 +11,7 @@ pub const STAT  : u64 =  4;
 pub const FSTAT : u64 =  5;
 pub const LSTAT : u64 =  6;
 pub const LSEEK : u64 =  8;
+pub const MMAP  : u64 =  9;
 pub const GETPID: u64 = 39;
 pub const FSYNC : u64 = 74;
 
@@ -18,7 +19,6 @@ pub const FSYNC : u64 = 74;
 
 /*
 __NR_poll 7
-__NR_mmap 9
 __NR_mprotect 10
 __NR_munmap 11
 __NR_brk 12

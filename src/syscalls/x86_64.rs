@@ -6,6 +6,8 @@
 //! Types of function arguments and return values match the linux kernel
 //! interface and / or the GNU libc implementations of these functions.
 
+use core::ffi::c_void;
+
 use crate::numbers;
 use crate::structs;
 
@@ -161,6 +163,28 @@ pub unsafe fn lseek(fd: u32, offset: i64, whence: i32) -> i64 {
     in("rdi") fd,
     in("rsi") offset,
     in("rdx") whence,
+    lateout("rax") ret,
+    lateout("rcx") _,
+    lateout("r11") _,
+    options(nostack),
+    );
+
+    ret
+}
+
+pub unsafe fn mmap(addr: *mut c_void, len: u64, prot: i32, flags: i32, fd: u32, offset: i64) -> *mut c_void {
+    let syscall = numbers::MMAP;
+    let ret: *mut c_void;
+
+    asm!(
+    "syscall",
+    in("rax") syscall,
+    in("rdi") addr,
+    in("rsi") len,
+    in("rdx") prot,
+    in("r10") flags,
+    in("r8") fd,
+    in("r9") offset,
     lateout("rax") ret,
     lateout("rcx") _,
     lateout("r11") _,
