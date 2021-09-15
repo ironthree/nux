@@ -267,5 +267,5 @@ pub const EOWNERDEAD        : u32 =  130;
 pub const ENOTRECOVERABLE   : u32 =  131;
 /// Operation not possible due to RF-kill
 pub const ERFKILL           : u32 =  132;
-/// /// Memory page has hardware error
+/// Memory page has hardware error
 pub const EHWPOISON         : u32 =  133;
