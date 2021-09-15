@@ -6,8 +6,6 @@
 //! Types of function arguments and return values match the linux kernel
 //! interface and / or the GNU libc implementations of these functions.
 
-use core::ffi::c_void;
-
 use crate::numbers;
 use crate::structs;
 
@@ -172,9 +170,9 @@ pub unsafe fn lseek(fd: u32, offset: i64, whence: i32) -> i64 {
     ret
 }
 
-pub unsafe fn mmap(addr: *mut c_void, length: usize, prot: i32, flags: i32, fd: u32, offset: i64) -> *mut c_void {
+pub unsafe fn mmap(addr: *mut u8, length: usize, prot: i32, flags: i32, fd: u32, offset: i64) -> *mut u8 {
     let syscall = numbers::MMAP;
-    let ret: *mut c_void;
+    let ret: *mut u8;
 
     asm!(
     "syscall",
@@ -194,7 +192,7 @@ pub unsafe fn mmap(addr: *mut c_void, length: usize, prot: i32, flags: i32, fd: 
     ret
 }
 
-pub unsafe fn mprotect(addr: *mut c_void, length: usize, prot: i32) -> i32 {
+pub unsafe fn mprotect(addr: *mut u8, length: usize, prot: i32) -> i32 {
     let syscall = numbers::MPROTECT;
     let ret: i32;
 
@@ -213,7 +211,7 @@ pub unsafe fn mprotect(addr: *mut c_void, length: usize, prot: i32) -> i32 {
     ret
 }
 
-pub unsafe fn munmap(addr: *mut c_void, length: usize) -> i32 {
+pub unsafe fn munmap(addr: *mut u8, length: usize) -> i32 {
     let syscall = numbers::MUNMAP;
     let ret: i32;
 
@@ -231,7 +229,7 @@ pub unsafe fn munmap(addr: *mut c_void, length: usize) -> i32 {
     ret
 }
 
-pub unsafe fn brk(addr: *mut c_void) -> i32 {
+pub unsafe fn brk(addr: *mut u8) -> i32 {
     let syscall = numbers::BRK;
     let ret: i32;
 
