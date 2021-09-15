@@ -12,12 +12,11 @@ use crate::structs;
 // keep ordered by ascending system call number
 
 pub unsafe fn read(fd: u32, buf: *mut u8, count: usize) -> i64 {
-    let syscall = numbers::READ;
     let ret: i64;
 
     asm!(
     "syscall",
-    in("rax") syscall,
+    in("rax") numbers::READ,
     in("rdi") fd,
     in("rsi") buf,
     in("rdx") count,
@@ -31,12 +30,11 @@ pub unsafe fn read(fd: u32, buf: *mut u8, count: usize) -> i64 {
 }
 
 pub unsafe fn write(fd: u32, buf: *const u8, count: usize) -> i64 {
-    let syscall = numbers::WRITE;
     let ret: i64;
 
     asm!(
     "syscall",
-    in("rax") syscall,
+    in("rax") numbers::WRITE,
     in("rdi") fd,
     in("rsi") buf,
     in("rdx") count,
@@ -50,12 +48,11 @@ pub unsafe fn write(fd: u32, buf: *const u8, count: usize) -> i64 {
 }
 
 pub unsafe fn open(filename: *const u8, flags: i32, mode: u32) -> i32 {
-    let syscall = numbers::OPEN;
     let ret: i32;
 
     asm!(
     "syscall",
-    in("rax") syscall,
+    in("rax") numbers::OPEN,
     in("rdi") filename,
     in("rsi") flags,
     in("rdx") mode,
@@ -69,12 +66,11 @@ pub unsafe fn open(filename: *const u8, flags: i32, mode: u32) -> i32 {
 }
 
 pub unsafe fn close(fd: u32) -> i32 {
-    let syscall = numbers::CLOSE;
     let ret: i32;
 
     asm!(
     "syscall",
-    in("rax") syscall,
+    in("rax") numbers::CLOSE,
     in("rdi") fd,
     lateout("rax") ret,
     lateout("rcx") _,
@@ -86,12 +82,11 @@ pub unsafe fn close(fd: u32) -> i32 {
 }
 
 pub unsafe fn stat(filename: *const u8, statbuf: *mut structs::Stat) -> i32 {
-    let syscall = numbers::STAT;
     let ret: i32;
 
     asm!(
     "syscall",
-    in("rax") syscall,
+    in("rax") numbers::STAT,
     in("rdi") filename,
     in("rsi") statbuf,
     lateout("rax") ret,
@@ -108,12 +103,11 @@ pub unsafe fn stat(filename: *const u8, statbuf: *mut structs::Stat) -> i32 {
 }
 
 pub unsafe fn fstat(fd: u32, statbuf: *mut structs::Stat) -> i32 {
-    let syscall = numbers::FSTAT;
     let ret: i32;
 
     asm!(
     "syscall",
-    in("rax") syscall,
+    in("rax") numbers::FSTAT,
     in("rdi") fd,
     in("rsi") statbuf,
     lateout("rax") ret,
@@ -130,12 +124,11 @@ pub unsafe fn fstat(fd: u32, statbuf: *mut structs::Stat) -> i32 {
 }
 
 pub unsafe fn lstat(filename: *const u8, statbuf: *mut structs::Stat) -> i32 {
-    let syscall = numbers::LSTAT;
     let ret: i32;
 
     asm!(
     "syscall",
-    in("rax") syscall,
+    in("rax") numbers::LSTAT,
     in("rdi") filename,
     in("rsi") statbuf,
     lateout("rax") ret,
@@ -152,12 +145,11 @@ pub unsafe fn lstat(filename: *const u8, statbuf: *mut structs::Stat) -> i32 {
 }
 
 pub unsafe fn lseek(fd: u32, offset: i64, whence: i32) -> i64 {
-    let syscall = numbers::LSEEK;
     let ret: i64;
 
     asm!(
     "syscall",
-    in("rax") syscall,
+    in("rax") numbers::LSEEK,
     in("rdi") fd,
     in("rsi") offset,
     in("rdx") whence,
@@ -171,12 +163,11 @@ pub unsafe fn lseek(fd: u32, offset: i64, whence: i32) -> i64 {
 }
 
 pub unsafe fn mmap(addr: *mut u8, length: usize, prot: i32, flags: i32, fd: u32, offset: i64) -> *mut u8 {
-    let syscall = numbers::MMAP;
     let ret: *mut u8;
 
     asm!(
     "syscall",
-    in("rax") syscall,
+    in("rax") numbers::MMAP,
     in("rdi") addr,
     in("rsi") length,
     in("rdx") prot,
@@ -193,12 +184,11 @@ pub unsafe fn mmap(addr: *mut u8, length: usize, prot: i32, flags: i32, fd: u32,
 }
 
 pub unsafe fn mprotect(addr: *mut u8, length: usize, prot: i32) -> i32 {
-    let syscall = numbers::MPROTECT;
     let ret: i32;
 
     asm!(
     "syscall",
-    in("rax") syscall,
+    in("rax") numbers::MPROTECT,
     in("rdi") addr,
     in("rsi") length,
     in("rdx") prot,
@@ -212,12 +202,11 @@ pub unsafe fn mprotect(addr: *mut u8, length: usize, prot: i32) -> i32 {
 }
 
 pub unsafe fn munmap(addr: *mut u8, length: usize) -> i32 {
-    let syscall = numbers::MUNMAP;
     let ret: i32;
 
     asm!(
     "syscall",
-    in("rax") syscall,
+    in("rax") numbers::MUNMAP,
     in("rdi") addr,
     in("rsi") length,
     lateout("rax") ret,
@@ -230,12 +219,11 @@ pub unsafe fn munmap(addr: *mut u8, length: usize) -> i32 {
 }
 
 pub unsafe fn brk(addr: *mut u8) -> i32 {
-    let syscall = numbers::BRK;
     let ret: i32;
 
     asm!(
     "syscall",
-    in("rax") syscall,
+    in("rax") numbers::BRK,
     in("rdi") addr,
     lateout("rax") ret,
     lateout("rcx") _,
@@ -247,12 +235,11 @@ pub unsafe fn brk(addr: *mut u8) -> i32 {
 }
 
 pub unsafe fn ioctl(fd: u32, cmd: u32, arg: u64) -> i32 {
-    let syscall = numbers::IOCTL;
     let ret: i32;
 
     asm!(
     "syscall",
-    in("rax") syscall,
+    in("rax") numbers::IOCTL,
     in("rdi") fd,
     in("rsi") cmd,
     in("rdx") arg,
@@ -266,12 +253,11 @@ pub unsafe fn ioctl(fd: u32, cmd: u32, arg: u64) -> i32 {
 }
 
 pub unsafe fn pread(fd: u32, buf: *mut u8, count: usize, pos: i64) -> i64 {
-    let syscall = numbers::PREAD64;
     let ret: i64;
 
     asm!(
     "syscall",
-    in("rax") syscall,
+    in("rax") numbers::PREAD64,
     in("rdi") fd,
     in("rsi") buf,
     in("rdx") count,
@@ -286,12 +272,11 @@ pub unsafe fn pread(fd: u32, buf: *mut u8, count: usize, pos: i64) -> i64 {
 }
 
 pub unsafe fn pwrite(fd: u32, buf: *const u8, count: usize, pos: i64) -> i64 {
-    let syscall = numbers::PWRITE64;
     let ret: i64;
 
     asm!(
     "syscall",
-    in("rax") syscall,
+    in("rax") numbers::PWRITE64,
     in("rdi") fd,
     in("rsi") buf,
     in("rdx") count,
@@ -306,12 +291,11 @@ pub unsafe fn pwrite(fd: u32, buf: *const u8, count: usize, pos: i64) -> i64 {
 }
 
 pub unsafe fn access(filename: *const u8, mode: u32) -> i32 {
-    let syscall = numbers::ACCESS;
     let ret: i32;
 
     asm!(
     "syscall",
-    in("rax") syscall,
+    in("rax") numbers::ACCESS,
     in("rdi") filename,
     in("rsi") mode,
     lateout("rax") ret,
@@ -324,12 +308,11 @@ pub unsafe fn access(filename: *const u8, mode: u32) -> i32 {
 }
 
 pub unsafe fn pipe(pipefd: *mut [u32; 2]) -> i32 {
-    let syscall = numbers::PIPE;
     let ret: i32;
 
     asm!(
     "syscall",
-    in("rax") syscall,
+    in("rax") numbers::PIPE,
     in("rdi") pipefd,
     lateout("rax") ret,
     lateout("rcx") _,
@@ -341,12 +324,11 @@ pub unsafe fn pipe(pipefd: *mut [u32; 2]) -> i32 {
 }
 
 pub unsafe fn sched_yield() -> i32 {
-    let syscall = numbers::SCHED_YIELD;
     let ret: i32;
 
     asm!(
     "syscall",
-    in("rax") syscall,
+    in("rax") numbers::SCHED_YIELD,
     lateout("rax") ret,
     lateout("rcx") _,
     lateout("r11") _,
@@ -357,12 +339,11 @@ pub unsafe fn sched_yield() -> i32 {
 }
 
 pub unsafe fn msync(addr: *mut u8, length: usize, flags: i32) -> i32 {
-    let syscall = numbers::MSYNC;
     let ret: i32;
 
     asm!(
     "syscall",
-    in("rax") syscall,
+    in("rax") numbers::MSYNC,
     in("rdi") addr,
     in("rsi") length,
     in("rdx") flags,
@@ -394,12 +375,11 @@ pub unsafe fn mincore(addr: *const u8, length: usize, vec: *mut u8) -> i32 {
 }
 
 pub unsafe fn getpid() -> u32 {
-    let syscall = numbers::GETPID;
     let ret: u32;
 
     asm!(
     "syscall",
-    in("rax") syscall,
+    in("rax") numbers::GETPID,
     lateout("rax") ret,
     lateout("rcx") _,
     lateout("r11") _,
@@ -410,12 +390,11 @@ pub unsafe fn getpid() -> u32 {
 }
 
 pub unsafe fn fsync(fd: u32) -> i32 {
-    let syscall = numbers::FSYNC;
     let ret: i32;
 
     asm!(
     "syscall",
-    in("rax") syscall,
+    in("rax") numbers::FSYNC,
     in("rdi") fd,
     lateout("rax") ret,
     lateout("rcx") _,
