@@ -248,6 +248,25 @@ pub unsafe fn brk(addr: *mut c_void) -> i32 {
     ret
 }
 
+pub unsafe fn ioctl(fd: u32, cmd: u32, arg: u64) -> i32 {
+    let syscall = numbers::IOCTL;
+    let ret: i32;
+
+    asm!(
+    "syscall",
+    in("rax") syscall,
+    in("rdi") fd,
+    in("rsi") cmd,
+    in("rdx") arg,
+    lateout("rax") ret,
+    lateout("rcx") _,
+    lateout("r11") _,
+    options(nostack),
+    );
+
+    ret
+}
+
 pub unsafe fn getpid() -> u32 {
     let syscall = numbers::GETPID;
     let ret: u32;
