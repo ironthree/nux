@@ -172,7 +172,7 @@ pub unsafe fn lseek(fd: u32, offset: i64, whence: i32) -> i64 {
     ret
 }
 
-pub unsafe fn mmap(addr: *mut c_void, len: u64, prot: i32, flags: i32, fd: u32, offset: i64) -> *mut c_void {
+pub unsafe fn mmap(addr: *mut c_void, len: usize, prot: i32, flags: i32, fd: u32, offset: i64) -> *mut c_void {
     let syscall = numbers::MMAP;
     let ret: *mut c_void;
 
@@ -185,6 +185,25 @@ pub unsafe fn mmap(addr: *mut c_void, len: u64, prot: i32, flags: i32, fd: u32, 
     in("r10") flags,
     in("r8") fd,
     in("r9") offset,
+    lateout("rax") ret,
+    lateout("rcx") _,
+    lateout("r11") _,
+    options(nostack),
+    );
+
+    ret
+}
+
+pub unsafe fn mprotect(addr: *mut c_void, len: usize, prot: i32) -> i32 {
+    let syscall = numbers::MPROTECT;
+    let ret: i32;
+
+    asm!(
+    "syscall",
+    in("rax") syscall,
+    in("rdi") addr,
+    in("rsi") len,
+    in("rdx") prot,
     lateout("rax") ret,
     lateout("rcx") _,
     lateout("r11") _,
