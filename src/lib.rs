@@ -5,24 +5,54 @@
 #![allow(clippy::missing_safety_doc)]
 //#![warn(missing_docs)]
 
-#[cfg(not(target_arch = "x86_64"))]
-compile_error!("This crate only contains implementations for x86_64 yet.");
-
 #[cfg(not(target_os = "linux"))]
 compile_error!("This crate is only compatible with linux.");
 
+// shared modules
 pub mod consts;
 pub mod errno;
+pub mod structs;
 
+#[cfg(test)]
+mod tests;
+
+// architecture-specific modules
 #[cfg(target_arch = "x86_64")]
 #[path = "numbers/x86_64.rs"]
 pub mod numbers;
 
-pub mod structs;
+#[cfg(target_arch = "x86")]
+#[path = "numbers/x86.rs"]
+pub mod numbers;
+
+#[cfg(target_arch = "aarch64")]
+#[path = "numbers/aarch64.rs"]
+pub mod numbers;
+
+#[cfg(target_arch = "arm")]
+#[path = "numbers/arm.rs"]
+pub mod numbers;
+
+#[cfg(target_arch = "powerpc64")]
+#[path = "numbers/powerpc64.rs"]
+pub mod numbers;
 
 #[cfg(target_arch = "x86_64")]
 #[path = "syscalls/x86_64.rs"]
 pub mod syscalls;
 
-#[cfg(test)]
-mod tests;
+#[cfg(target_arch = "x86")]
+#[path = "syscalls/x86.rs"]
+pub mod syscalls;
+
+#[cfg(target_arch = "aarch64")]
+#[path = "syscalls/aarch64.rs"]
+pub mod syscalls;
+
+#[cfg(target_arch = "arm")]
+#[path = "syscalls/arm.rs"]
+pub mod syscalls;
+
+#[cfg(target_arch = "powerpc64")]
+#[path = "syscalls/powerpc64.rs"]
+pub mod syscalls;
