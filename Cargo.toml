@@ -1,0 +1,26 @@
+[package]
+name = "nux"
+description = "Bindings for linux kernel system calls with support for no_std"
+license = "MIT OR Apache-2.0"
+
+version = "0.1.0-dev"
+edition = "2021"
+
+authors = ["Fabio Valentini <decathorpe@gmail.com>"]
+readme = "README.md"
+exclude = ["/.github/", "/rustfmt.toml"]
+
+categories = ["os", "os::linux-apis", "no-std"]
+keywords = ["linux", "kernel", "system call", "syscall", "no_std"]
+repository = "https://github.com/ironthree/nux"
+
+[dependencies]
+
+[features]
+default = []
+std = []
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = 3
