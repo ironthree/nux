@@ -14,6 +14,7 @@ pub const LSEEK     : u64 =  8;
 pub const MMAP      : u64 =  9;
 pub const MPROTECT  : u64 = 10;
 pub const MUNMAP    : u64 = 11;
+pub const BRK       : u64 = 12;
 pub const GETPID    : u64 = 39;
 pub const FSYNC     : u64 = 74;
 
@@ -21,7 +22,6 @@ pub const FSYNC     : u64 = 74;
 
 /*
 __NR_poll 7
-__NR_brk 12
 __NR_rt_sigaction 13
 __NR_rt_sigprocmask 14
 __NR_rt_sigreturn 15

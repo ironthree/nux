@@ -231,6 +231,23 @@ pub unsafe fn munmap(addr: *mut c_void, length: usize) -> i32 {
     ret
 }
 
+pub unsafe fn brk(addr: *mut c_void) -> i32 {
+    let syscall = numbers::BRK;
+    let ret: i32;
+
+    asm!(
+    "syscall",
+    in("rax") syscall,
+    in("rdi") addr,
+    lateout("rax") ret,
+    lateout("rcx") _,
+    lateout("r11") _,
+    options(nostack),
+    );
+
+    ret
+}
+
 pub unsafe fn getpid() -> u32 {
     let syscall = numbers::GETPID;
     let ret: u32;
