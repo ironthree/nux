@@ -3,33 +3,34 @@
 //! This module contains definitions of system call numbers as they are defined
 //! for `x86_64` / `AMD64` in `<asm/unistd_64.h>` from the linux kernel headers.
 
-pub const READ          : u64 =  0;
-pub const WRITE         : u64 =  1;
-pub const OPEN          : u64 =  2;
-pub const CLOSE         : u64 =  3;
-pub const STAT          : u64 =  4;
-pub const FSTAT         : u64 =  5;
-pub const LSTAT         : u64 =  6;
-pub const LSEEK         : u64 =  8;
-pub const MMAP          : u64 =  9;
-pub const MPROTECT      : u64 = 10;
-pub const MUNMAP        : u64 = 11;
-pub const BRK           : u64 = 12;
-pub const IOCTL         : u64 = 16;
+pub const READ          : u64 =   0;
+pub const WRITE         : u64 =   1;
+pub const OPEN          : u64 =   2;
+pub const CLOSE         : u64 =   3;
+pub const STAT          : u64 =   4;
+pub const FSTAT         : u64 =   5;
+pub const LSTAT         : u64 =   6;
+pub const LSEEK         : u64 =   8;
+pub const MMAP          : u64 =   9;
+pub const MPROTECT      : u64 =  10;
+pub const MUNMAP        : u64 =  11;
+pub const BRK           : u64 =  12;
+pub const IOCTL         : u64 =  16;
 // renamed pread -> pread64 in linux 2.6
-pub const PREAD64       : u64 = 17;
+pub const PREAD64       : u64 =  17;
 // renamed pwrite -> pwrite64 in linux 2.6
-pub const PWRITE64      : u64 = 18;
-pub const ACCESS        : u64 = 21;
-pub const PIPE          : u64 = 22;
-pub const SCHED_YIELD   : u64 = 24;
-pub const MSYNC         : u64 = 26;
-pub const MINCORE       : u64 = 27;
-pub const SHMGET        : u64 = 29;
-pub const SHMAT         : u64 = 30;
-pub const GETPID        : u64 = 39;
-pub const SHMDT         : u64 = 67;
-pub const FSYNC         : u64 = 74;
+pub const PWRITE64      : u64 =  18;
+pub const ACCESS        : u64 =  21;
+pub const PIPE          : u64 =  22;
+pub const SCHED_YIELD   : u64 =  24;
+pub const MSYNC         : u64 =  26;
+pub const MINCORE       : u64 =  27;
+pub const SHMGET        : u64 =  29;
+pub const SHMAT         : u64 =  30;
+pub const GETPID        : u64 =  39;
+pub const SHMDT         : u64 =  67;
+pub const FSYNC         : u64 =  74;
+pub const OPENAT        : u64 = 257;
 
 // Not implemented (as of linux 5.13.15):
 
@@ -277,7 +278,6 @@ __NR_inotify_rm_watch 255
 linux 2.6.16:
 
 __NR_migrate_pages 256
-__NR_openat 257
 __NR_mkdirat 258
 __NR_mknodat 259
 __NR_fchownat 260

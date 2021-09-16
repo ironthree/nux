@@ -460,3 +460,22 @@ pub unsafe fn fsync(fd: u32) -> i32 {
 
     ret
 }
+
+pub unsafe fn openat(dirfd: i32, filename: *const u8, flags: i32, mode: u32) -> i32 {
+    let ret: i32;
+
+    asm!(
+    "syscall",
+    in("rax") numbers::OPENAT,
+    in("rdi") dirfd,
+    in("rsi") filename,
+    in("rdx") flags,
+    in("r10") mode,
+    lateout("rax") ret,
+    lateout("rcx") _,
+    lateout("r11") _,
+    options(nostack),
+    );
+
+    ret
+}
