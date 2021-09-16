@@ -82,3 +82,5 @@ pub const SEEK_DATA: i32 = 3;
 /// set file offset to the next location in the file which is greater
 /// than or equal to `offset` and that does not contain data ("hole")
 pub const SEEK_HOLE: i32 = 4;
+
+pub const AT_FDCWD: i32 = -100;

@@ -7,7 +7,10 @@ const BUFSIZE: usize = 16;
 fn main() {
     let mut buf = [0u8; BUFSIZE];
 
+    #[cfg(not(target_arch = "aarch64"))]
     let fd = unsafe { syscalls::open("Cargo.toml\0".as_ptr(), 0, 0) };
+    #[cfg(target_arch = "aarch64")]
+    let fd = unsafe { syscalls::openat(nux::consts::AT_FDCWD, "Cargo.toml\0".as_ptr(), 0, 0)};
 
     if fd < 0 {
         eprintln!("Failed to open file: errno {}", -fd);
