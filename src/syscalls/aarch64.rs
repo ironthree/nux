@@ -87,8 +87,9 @@ pub unsafe fn fstat(fd: u32, statbuf: *mut structs::Stat) -> i32 {
     );
 
     // initialize padding
-    (*statbuf).__pad0 = 0;
-    (*statbuf).__unused = [0; 3];
+    (*statbuf).__pad1 = 0;
+    (*statbuf).__pad2 = 0;
+    (*statbuf).__unused = [0; 2];
 
     ret
 }

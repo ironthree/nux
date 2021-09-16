@@ -11,7 +11,6 @@ compile_error!("This crate is only compatible with linux.");
 // shared modules
 pub mod consts;
 pub mod errno;
-pub mod structs;
 
 #[cfg(test)]
 mod tests;
@@ -56,3 +55,23 @@ pub mod syscalls;
 #[cfg(target_arch = "powerpc64")]
 #[path = "syscalls/powerpc64.rs"]
 pub mod syscalls;
+
+#[cfg(target_arch = "x86_64")]
+#[path = "structs/x86_64.rs"]
+pub mod structs;
+
+#[cfg(target_arch = "x86")]
+#[path = "structs/x86.rs"]
+pub mod structs;
+
+#[cfg(target_arch = "aarch64")]
+#[path = "structs/aarch64.rs"]
+pub mod structs;
+
+#[cfg(target_arch = "arm")]
+#[path = "structs/arm.rs"]
+pub mod structs;
+
+#[cfg(target_arch = "powerpc64")]
+#[path = "structs/powerpc64.rs"]
+pub mod structs;
