@@ -5,9 +5,9 @@
 //! members match the definition of those structs in the linux kernel header
 //! files and their implementation in the [`libc`](https://docs.rs/libc) crate.
 
-// <bits/types.h>
-
 #![allow(non_camel_case_types)]
+
+// <bits/types.h>
 
 type __dev_t = u64;
 type __ino_t = u64;
@@ -19,6 +19,8 @@ type __off_t = i64;
 type __blksize_t = i32;
 type __blkcnt_t = i64;
 type __time_t = i64;
+
+// <bits/struct_stat.h>
 
 #[repr(C)]
 #[derive(Debug)]
@@ -39,6 +41,7 @@ pub struct Stat {
     pub(crate) __pad2: i32,
 
     pub st_blocks: __blkcnt_t,
+
     pub st_atime: __time_t,
     pub st_atime_nsec: u64,
     pub st_mtime: __time_t,
