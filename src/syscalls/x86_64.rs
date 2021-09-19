@@ -453,6 +453,22 @@ pub unsafe fn shmat(shmid: i32, shmaddr: *mut u8, shmflg: i32) -> *mut u8 {
     ret
 }
 
+pub unsafe fn dup(old_fd: u32) -> i32 {
+    let ret: i32;
+
+    asm!(
+    "syscall",
+    in("rax") numbers::DUP,
+    in("rdi") old_fd,
+    lateout("rax") ret,
+    lateout("rcx") _,
+    lateout("r11") _,
+    options(nostack),
+    );
+
+    ret
+}
+
 pub unsafe fn getpid() -> u32 {
     let ret: u32;
 
