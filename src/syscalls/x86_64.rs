@@ -501,6 +501,22 @@ pub unsafe fn pause() -> i32 {
     ret
 }
 
+pub unsafe fn alarm(seconds: u64) -> u64 {
+    let ret: u64;
+
+    asm!(
+    "syscall",
+    in("rax") numbers::ALARM,
+    in("rdi") seconds,
+    lateout("rax") ret,
+    lateout("rcx") _,
+    lateout("r11") _,
+    options(nostack),
+    );
+
+    ret
+}
+
 pub unsafe fn getpid() -> u32 {
     let ret: u32;
 
