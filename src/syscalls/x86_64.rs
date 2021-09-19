@@ -551,6 +551,25 @@ pub unsafe fn sendfile(out_fd: u32, in_fd: u32, offset: i64, count: usize) -> i6
     ret
 }
 
+// TODO: define socket domains AF_* and socket type SOCK_*
+pub unsafe fn socket(domain: i32, stype: i32, protocol: i32) -> i32 {
+    let ret: i32;
+
+    asm!(
+    "syscall",
+    in("rax") numbers::SOCKET,
+    in("rdi") domain,
+    in("rsi") stype,
+    in("rdx") protocol,
+    lateout("rax") ret,
+    lateout("rcx") _,
+    lateout("r11") _,
+    options(nostack),
+    );
+
+    ret
+}
+
 pub unsafe fn shmdt(shmaddr: *const u8) -> i32 {
     let ret: i32;
 
