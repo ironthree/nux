@@ -7,26 +7,17 @@
 
 #![allow(non_camel_case_types)]
 
+type __blkcnt_t = i64; // even bindgen gets this one wrong somehow
+type __blksize_t = i32;
 type __dev_t = u64;
+type __gid_t = u32;
 type __ino_t = u32;
 type __mode_t = u32;
 type __nlink_t = u32;
-type __uid_t = u32;
-type __gid_t = u32;
-type __off_t = i32;
-type __blksize_t = i32;
-type __blkcnt_t = i32;
-type __time_t = i32;
+type __off_t = i64; // even bindgen gets this one wrong somehow
 type __syscall_slong_t = i32;
-
-// TODO: FIXME this is not correct :(
-
-#[repr(C)]
-#[derive(Debug)]
-pub struct TimeSpec {
-    pub tv_sec: __time_t,
-    pub tv_nsec: __syscall_slong_t,
-}
+type __time_t = i32;
+type __uid_t = u32;
 
 #[repr(C)]
 #[derive(Debug)]
@@ -48,9 +39,12 @@ pub struct Stat {
     pub st_blksize: __blksize_t,
     pub st_blocks: __blkcnt_t,
 
-    pub st_atim: TimeSpec,
-    pub st_mtim: TimeSpec,
-    pub st_ctim: TimeSpec,
+    pub st_atime: __time_t,
+    pub st_atime_nsec: __syscall_slong_t,
+    pub st_mtime: __time_t,
+    pub st_mtime_nsec: __syscall_slong_t,
+    pub st_ctime: __time_t,
+    pub st_ctime_nsec: __syscall_slong_t,
 
     pub(crate) __unused: [u32; 2],
 }

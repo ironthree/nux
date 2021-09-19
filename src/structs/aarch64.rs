@@ -7,16 +7,16 @@
 
 #![allow(non_camel_case_types)]
 
+type __blkcnt_t = i64;
+type __blksize_t = i32;
 type __dev_t = u64;
+type __gid_t = u32;
 type __ino_t = u64;
 type __mode_t = u32;
 type __nlink_t = u32;
-type __uid_t = u32;
-type __gid_t = u32;
 type __off_t = i64;
-type __blksize_t = i32;
-type __blkcnt_t = i64;
 type __time_t = i64;
+type __uid_t = u32;
 
 #[repr(C)]
 #[derive(Debug)]

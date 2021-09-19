@@ -136,26 +136,6 @@ pub unsafe fn pause() -> i32 {
     ret
 }
 
-pub unsafe fn stat(filename: *const u8, statbuf: *mut structs::Stat) -> i32 {
-    let ret: i32;
-
-    asm!(
-    "int 0x80",
-    in("eax") numbers::STAT,
-    in("ebx") filename,
-    in("ecx") statbuf,
-    lateout("eax") ret,
-    options(nostack),
-    );
-
-    // initialize padding
-    (*statbuf).__pad1 = 0;
-    (*statbuf).__pad2 = 0;
-    (*statbuf).__unused = [0; 2];
-
-    ret
-}
-
 pub unsafe fn fstat(fd: u32, statbuf: *mut structs::Stat) -> i32 {
     let ret: i32;
 
@@ -185,6 +165,26 @@ pub unsafe fn sched_yield() -> i32 {
     lateout("eax") ret,
     options(nostack),
     );
+
+    ret
+}
+
+pub unsafe fn stat(filename: *const u8, statbuf: *mut structs::Stat) -> i32 {
+    let ret: i32;
+
+    asm!(
+    "int 0x80",
+    in("eax") numbers::STAT64,
+    in("ebx") filename,
+    in("ecx") statbuf,
+    lateout("eax") ret,
+    options(nostack),
+    );
+
+    // initialize padding
+    (*statbuf).__pad1 = 0;
+    (*statbuf).__pad2 = 0;
+    (*statbuf).__unused = [0; 2];
 
     ret
 }

@@ -11,6 +11,6 @@ pub const CLOSE         : u32 =   6;
 pub const GETPID        : u32 =  20;
 pub const ALARM         : u32 =  27;
 pub const PAUSE         : u32 =  29;
-pub const STAT          : u32 = 106;
 pub const FSTAT         : u32 = 108;
 pub const SCHED_YIELD   : u32 = 158;
+pub const STAT64        : u32 = 195;
