@@ -38,6 +38,7 @@ pub const SENDFILE      : u64 =  40;
 pub const SOCKET        : u64 =  41;
 pub const SHUTDOWN      : u64 =  48;
 pub const LISTEN        : u64 =  50;
+pub const SOCKETPAIR    : u64  = 53;
 pub const FORK          : u64 =  57;
 pub const SHMDT         : u64 =  67;
 pub const FSYNC         : u64 =  74;
@@ -66,7 +67,6 @@ __NR_recvmsg 47
 __NR_bind 49
 __NR_getsockname 51
 __NR_getpeername 52
-__NR_socketpair 53
 __NR_setsockopt 54
 __NR_getsockopt 55
 __NR_clone 56
