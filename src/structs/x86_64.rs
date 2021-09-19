@@ -7,8 +7,6 @@
 
 #![allow(non_camel_case_types)]
 
-// <bits/types.h>
-
 type __dev_t = u64;
 type __ino_t = u64;
 type __mode_t = u32;
@@ -19,8 +17,6 @@ type __off_t = i64;
 type __blksize_t = i64;
 type __blkcnt_t = i64;
 type __time_t = i64;
-
-// <bits/struct_stat.h>
 
 #[repr(C)]
 #[derive(Debug)]
