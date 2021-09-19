@@ -1,7 +1,7 @@
 /* minimal "cat" that only prints contents of "Cargo.toml" to STDOUT
  *
  * uses the following syscalls directly:
- * - openat
+ * - open
  * - read
  * - write
  * - close
@@ -14,7 +14,7 @@ const BUFSIZE: usize = 16;
 fn main() {
     let mut buf = [0u8; BUFSIZE];
 
-    let fd = unsafe { syscalls::openat(nux::consts::AT_FDCWD, "Cargo.toml\0".as_ptr(), 0, 0) };
+    let fd = unsafe { syscalls::open("Cargo.toml\0".as_ptr(), 0, 0) };
 
     if fd < 0 {
         eprintln!("Failed to open file: errno {}", -fd);

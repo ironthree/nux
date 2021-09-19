@@ -6,6 +6,8 @@
 //! Types of function arguments and return values match the linux kernel
 //! interface and / or the GNU libc implementations of these functions.
 
+use crate::consts::AT_FDCWD;
+
 use crate::numbers;
 use crate::structs;
 
@@ -90,6 +92,30 @@ pub unsafe fn fstat(fd: u32, statbuf: *mut structs::Stat) -> i32 {
     (*statbuf).__pad1 = 0;
     (*statbuf).__pad2 = 0;
     (*statbuf).__unused = [0; 2];
+
+    ret
+}
+
+// wrapper functions
+// for compatibility with other architectures which have those syscalls
+
+pub unsafe fn open(filename: *const u8, flags: i32, mode: u32) -> i32 {
+    openat(AT_FDCWD, filename, flags, mode)
+}
+
+pub unsafe fn stat(filename: *const u8, statbuf: *mut structs::Stat) -> i32 {
+    let fd = open(filename, 0, 0);
+    if fd < 0 {
+        return fd;
+    }
+
+    let ret = fstat(fd as u32, statbuf);
+
+    close(fd as u32);
+
+    if ret < 0 {
+        return ret;
+    }
 
     ret
 }
