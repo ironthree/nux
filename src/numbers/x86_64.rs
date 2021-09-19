@@ -37,6 +37,7 @@ pub const GETPID        : u64 =  39;
 pub const SENDFILE      : u64 =  40;
 pub const SOCKET        : u64 =  41;
 pub const SHUTDOWN      : u64 =  48;
+pub const LISTEN        : u64 =  50;
 pub const SHMDT         : u64 =  67;
 pub const FSYNC         : u64 =  74;
 pub const OPENAT        : u64 = 257;
@@ -62,7 +63,6 @@ __NR_recvfrom 45
 __NR_sendmsg 46
 __NR_recvmsg 47
 __NR_bind 49
-__NR_listen 50
 __NR_getsockname 51
 __NR_getpeername 52
 __NR_socketpair 53

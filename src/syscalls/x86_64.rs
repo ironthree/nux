@@ -588,6 +588,23 @@ pub unsafe fn shutdown(sockfd: u32, how: i32) -> i32 {
     ret
 }
 
+pub unsafe fn listen(sockfd: u32, backlog: u32) -> i32 {
+    let ret: i32;
+
+    asm!(
+    "syscall",
+    in("rax") numbers::LISTEN,
+    in("rdi") sockfd,
+    in("rsi") backlog,
+    lateout("rax") ret,
+    lateout("rcx") _,
+    lateout("r11") _,
+    options(nostack),
+    );
+
+    ret
+}
+
 pub unsafe fn shmdt(shmaddr: *const u8) -> i32 {
     let ret: i32;
 
