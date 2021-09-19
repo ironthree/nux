@@ -683,6 +683,23 @@ pub unsafe fn exit(status: i32) {
     );
 }
 
+pub unsafe fn kill(pid: u32, sig: i32) -> i32 {
+    let ret: i32;
+
+    asm!(
+    "syscall",
+    in("rax") numbers::KILL,
+    in("rdi") pid,
+    in("rsi") sig,
+    lateout("rax") ret,
+    lateout("rcx") _,
+    lateout("r11") _,
+    options(nostack),
+    );
+
+    ret
+}
+
 pub unsafe fn shmdt(shmaddr: *const u8) -> i32 {
     let ret: i32;
 
