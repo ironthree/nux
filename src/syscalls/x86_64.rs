@@ -605,6 +605,21 @@ pub unsafe fn listen(sockfd: u32, backlog: u32) -> i32 {
     ret
 }
 
+pub unsafe fn fork() -> i32 {
+    let ret: i32;
+
+    asm!(
+    "syscall",
+    in("rax") numbers::FORK,
+    lateout("rax") ret,
+    lateout("rcx") _,
+    lateout("r11") _,
+    options(nostack),
+    );
+
+    ret
+}
+
 pub unsafe fn shmdt(shmaddr: *const u8) -> i32 {
     let ret: i32;
 

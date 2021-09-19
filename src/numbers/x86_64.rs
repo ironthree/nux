@@ -38,6 +38,7 @@ pub const SENDFILE      : u64 =  40;
 pub const SOCKET        : u64 =  41;
 pub const SHUTDOWN      : u64 =  48;
 pub const LISTEN        : u64 =  50;
+pub const FORK          : u64 =  57;
 pub const SHMDT         : u64 =  67;
 pub const FSYNC         : u64 =  74;
 pub const OPENAT        : u64 = 257;
@@ -69,7 +70,6 @@ __NR_socketpair 53
 __NR_setsockopt 54
 __NR_getsockopt 55
 __NR_clone 56
-__NR_fork 57
 __NR_vfork 58
 __NR_execve 59
 __NR_exit 60
