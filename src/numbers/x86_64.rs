@@ -30,6 +30,7 @@ pub const MADVISE       : u64 =  28;
 pub const SHMGET        : u64 =  29;
 pub const SHMAT         : u64 =  30;
 pub const DUP           : u64 =  32;
+pub const DUP2          : u64 =  33;
 pub const GETPID        : u64 =  39;
 pub const SHMDT         : u64 =  67;
 pub const FSYNC         : u64 =  74;
@@ -46,7 +47,6 @@ __NR_readv 19
 __NR_writev 20
 __NR_select 23
 __NR_shmctl 31
-__NR_dup2 33
 __NR_pause 34
 __NR_nanosleep 35
 __NR_getitimer 36
