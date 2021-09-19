@@ -398,6 +398,24 @@ pub unsafe fn mincore(addr: *const u8, length: usize, vec: *mut u8) -> i32 {
     ret
 }
 
+// TODO: define madvise flags: MADV_*
+pub unsafe fn madvise(addr: *const u8, length: usize, advice: i32) -> i32 {
+    let ret: i32;
+
+    asm!(
+    "syscall",
+    in("rax") numbers::MADVISE,
+    in("rdi") addr,
+    in("rsi") length,
+    in("rdx") advice,
+    lateout("rax") ret,
+    lateout("rcx") _,
+    options(nostack),
+    );
+
+    ret
+}
+
 // TODO: define shmget flags: IPC_*, SHM_*
 pub unsafe fn shmget(key: i32, size: usize, shmflg: i32) -> i32 {
     let ret: i32;

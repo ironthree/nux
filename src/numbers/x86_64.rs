@@ -26,6 +26,7 @@ pub const SCHED_YIELD   : u64 =  24;
 pub const MREMAP        : u64 =  25;
 pub const MSYNC         : u64 =  26;
 pub const MINCORE       : u64 =  27;
+pub const MADVISE       : u64 =  28;
 pub const SHMGET        : u64 =  29;
 pub const SHMAT         : u64 =  30;
 pub const GETPID        : u64 =  39;
@@ -43,7 +44,6 @@ __NR_rt_sigreturn 15
 __NR_readv 19
 __NR_writev 20
 __NR_select 23
-__NR_madvise 28
 __NR_shmctl 31
 __NR_dup 32
 __NR_dup2 33
