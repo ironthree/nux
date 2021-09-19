@@ -340,6 +340,27 @@ pub unsafe fn sched_yield() -> i32 {
     ret
 }
 
+// TODO: define mremap flags: MREMAP_*
+pub unsafe fn mremap(old_addr: *mut u8, old_size: usize, new_size: usize, flags: i32, new_addr: *mut u8) -> *mut u8 {
+    let ret: *mut u8;
+
+    asm!(
+    "syscall",
+    in("rax") numbers::MREMAP,
+    in("rdi") old_addr,
+    in("rsi") old_size,
+    in("rdx") new_size,
+    in("r10") flags,
+    in("r8") new_addr,
+    lateout("rax") ret,
+    lateout("rcx") _,
+    lateout("r11") _,
+    options(nostack),
+    );
+
+    ret
+}
+
 // TODO: define msync flags: MS_*
 pub unsafe fn msync(addr: *mut u8, length: usize, flags: i32) -> i32 {
     let ret: i32;

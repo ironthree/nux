@@ -23,6 +23,7 @@ pub const PWRITE64      : u64 =  18;
 pub const ACCESS        : u64 =  21;
 pub const PIPE          : u64 =  22;
 pub const SCHED_YIELD   : u64 =  24;
+pub const MREMAP        : u64 =  25;
 pub const MSYNC         : u64 =  26;
 pub const MINCORE       : u64 =  27;
 pub const SHMGET        : u64 =  29;
@@ -42,7 +43,6 @@ __NR_rt_sigreturn 15
 __NR_readv 19
 __NR_writev 20
 __NR_select 23
-__NR_mremap 25
 __NR_madvise 28
 __NR_shmctl 31
 __NR_dup 32
