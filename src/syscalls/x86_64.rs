@@ -532,6 +532,25 @@ pub unsafe fn getpid() -> u32 {
     ret
 }
 
+pub unsafe fn sendfile(out_fd: u32, in_fd: u32, offset: i64, count: usize) -> i64 {
+    let ret: i64;
+
+    asm!(
+    "syscall",
+    in("rax") numbers::SENDFILE,
+    in("rdi") out_fd,
+    in("rsi") in_fd,
+    in("rdx") offset,
+    in("r10") count,
+    lateout("rax") ret,
+    lateout("rcx") _,
+    lateout("r11") _,
+    options(nostack),
+    );
+
+    ret
+}
+
 pub unsafe fn shmdt(shmaddr: *const u8) -> i32 {
     let ret: i32;
 
