@@ -570,6 +570,24 @@ pub unsafe fn socket(domain: i32, stype: i32, protocol: i32) -> i32 {
     ret
 }
 
+// TODO: define shutdown flags SHUT_*
+pub unsafe fn shutdown(sockfd: u32, how: i32) -> i32 {
+    let ret: i32;
+
+    asm!(
+    "syscall",
+    in("rax") numbers::SHUTDOWN,
+    in("rdi") sockfd,
+    in("rsi") how,
+    lateout("rax") ret,
+    lateout("rcx") _,
+    lateout("r11") _,
+    options(nostack),
+    );
+
+    ret
+}
+
 pub unsafe fn shmdt(shmaddr: *const u8) -> i32 {
     let ret: i32;
 
