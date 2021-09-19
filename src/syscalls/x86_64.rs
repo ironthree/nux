@@ -654,6 +654,24 @@ pub unsafe fn vfork() -> i32 {
     ret
 }
 
+pub unsafe fn execve(filename: *const u8, argv: *const *const u8, envp: *const *const u8) -> i32 {
+    let ret: i32;
+
+    asm!(
+    "syscall",
+    in("rax") numbers::EXECVE,
+    in("rdi") filename,
+    in("rsi") argv,
+    in("rdx") envp,
+    lateout("rax") ret,
+    lateout("rcx") _,
+    lateout("r11") _,
+    options(nostack),
+    );
+
+    ret
+}
+
 pub unsafe fn shmdt(shmaddr: *const u8) -> i32 {
     let ret: i32;
 

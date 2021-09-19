@@ -41,6 +41,7 @@ pub const LISTEN        : u64 =  50;
 pub const SOCKETPAIR    : u64  = 53;
 pub const FORK          : u64 =  57;
 pub const VFORK         : u64 =  58;
+pub const EXECVE        : u64 =  59;
 pub const SHMDT         : u64 =  67;
 pub const FSYNC         : u64 =  74;
 pub const OPENAT        : u64 = 257;
@@ -71,7 +72,6 @@ __NR_getpeername 52
 __NR_setsockopt 54
 __NR_getsockopt 55
 __NR_clone 56
-__NR_execve 59
 __NR_exit 60
 __NR_wait4 61
 __NR_kill 62
