@@ -486,6 +486,21 @@ pub unsafe fn dup2(old_fd: u32, new_fd: u32) -> i32 {
     ret
 }
 
+pub unsafe fn pause() -> i32 {
+    let ret: i32;
+
+    asm!(
+    "syscall",
+    in("rax") numbers::PAUSE,
+    lateout("rax") ret,
+    lateout("rcx") _,
+    lateout("r11") _,
+    options(nostack),
+    );
+
+    ret
+}
+
 pub unsafe fn getpid() -> u32 {
     let ret: u32;
 
