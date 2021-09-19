@@ -672,6 +672,17 @@ pub unsafe fn execve(filename: *const u8, argv: *const *const u8, envp: *const *
     ret
 }
 
+pub unsafe fn exit(status: i32) {
+    asm!(
+    "syscall",
+    in("rax") numbers::EXIT,
+    in("rdi") status,
+    lateout("rcx") _,
+    lateout("r11") _,
+    options(nostack),
+    );
+}
+
 pub unsafe fn shmdt(shmaddr: *const u8) -> i32 {
     let ret: i32;
 
