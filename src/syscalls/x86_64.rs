@@ -848,6 +848,25 @@ pub unsafe fn kill(pid: u32, sig: i32) -> i32 {
     ret
 }
 
+// TODO: define semget flags: IPC_*
+pub unsafe fn semget(key: i32, nsems: i32, semflg: i32) -> i32 {
+    let ret: i32;
+
+    asm!(
+    "syscall",
+    in("rax") numbers::SEMGET,
+    in("rdi") key,
+    in("rsi") nsems,
+    in("rdx") semflg,
+    lateout("rax") ret,
+    lateout("rcx") _,
+    lateout("r11") _,
+    options(nostack),
+    );
+
+    ret
+}
+
 pub unsafe fn shmdt(shmaddr: *const u8) -> i32 {
     let ret: i32;
 

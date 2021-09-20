@@ -51,6 +51,7 @@ pub const VFORK         : u64 =  58;
 pub const EXECVE        : u64 =  59;
 pub const EXIT          : u64 =  60;
 pub const KILL          : u64 =  62;
+pub const SEMGET        : u64 =  64;
 pub const SHMDT         : u64 =  67;
 pub const FSYNC         : u64 =  74;
 pub const OPENAT        : u64 = 257;
@@ -76,7 +77,6 @@ __NR_getsockopt 55
 __NR_clone 56
 __NR_wait4 61
 __NR_uname 63
-__NR_semget 64
 __NR_semop 65
 __NR_semctl 66
 __NR_msgget 68
