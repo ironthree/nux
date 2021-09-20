@@ -8,6 +8,8 @@ pub const CLOSE         : u64 =  57;
 pub const READ          : u64 =  63;
 pub const WRITE         : u64 =  64;
 pub const FSTAT         : u64 =  80;
+pub const SCHED_YIELD   : u64 = 124;
+pub const GETPID        : u64 = 172;
 
 // Not implemented (as of linux 5.13.15):
 
@@ -133,7 +135,6 @@ __NR_sched_getscheduler 120
 __NR_sched_getparam 121
 __NR_sched_setaffinity 122
 __NR_sched_getaffinity 123
-__NR_sched_yield 124
 __NR_sched_get_priority_max 125
 __NR_sched_get_priority_min 126
 __NR_sched_rr_get_interval 127
@@ -181,7 +182,6 @@ __NR_getcpu 168
 __NR_gettimeofday 169
 __NR_settimeofday 170
 __NR_adjtimex 171
-__NR_getpid 172
 __NR_getppid 173
 __NR_getuid 174
 __NR_geteuid 175

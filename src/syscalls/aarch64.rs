@@ -96,6 +96,32 @@ pub unsafe fn fstat(fd: u32, statbuf: *mut structs::Stat) -> i32 {
     ret
 }
 
+pub unsafe fn sched_yield() -> i32 {
+    let ret: i32;
+
+    asm!(
+    "svc #0",
+    in("x8") numbers::SCHED_YIELD,
+    lateout("x0") ret,
+    options(nostack),
+    );
+
+    ret
+}
+
+pub unsafe fn getpid() -> u32 {
+    let ret: u32;
+
+    asm!(
+    "svc #0",
+    in("x8") numbers::GETPID,
+    lateout("x0") ret,
+    options(nostack),
+    );
+
+    ret
+}
+
 // wrapper functions
 // for compatibility with other architectures which have those syscalls
 
