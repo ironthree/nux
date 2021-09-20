@@ -682,6 +682,24 @@ pub unsafe fn shutdown(sockfd: u32, how: i32) -> i32 {
     ret
 }
 
+pub unsafe fn bind(sockfd: u32, addr: *const structs::SockAddr, addrlen: u32) -> i32 {
+    let ret: i32;
+
+    asm!(
+    "syscall",
+    in("rax") numbers::BIND,
+    in("rdi") sockfd,
+    in("rsi") addr,
+    in("rdx") addrlen,
+    lateout("rax") ret,
+    lateout("rcx") _,
+    lateout("r11") _,
+    options(nostack),
+    );
+
+    ret
+}
+
 pub unsafe fn listen(sockfd: u32, backlog: u32) -> i32 {
     let ret: i32;
 

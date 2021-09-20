@@ -41,6 +41,7 @@ pub const ACCEPT        : u64 =  43;
 pub const SENDTO        : u64 =  44;
 pub const RECVFROM      : u64 =  45;
 pub const SHUTDOWN      : u64 =  48;
+pub const BIND          : u64 =  49;
 pub const LISTEN        : u64 =  50;
 pub const SOCKETPAIR    : u64  = 53;
 pub const FORK          : u64 =  57;
@@ -68,7 +69,6 @@ __NR_getitimer 36
 __NR_setitimer 38
 __NR_sendmsg 46
 __NR_recvmsg 47
-__NR_bind 49
 __NR_getsockname 51
 __NR_getpeername 52
 __NR_setsockopt 54
