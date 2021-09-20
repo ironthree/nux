@@ -717,6 +717,24 @@ pub unsafe fn listen(sockfd: u32, backlog: u32) -> i32 {
     ret
 }
 
+pub unsafe fn getsockname(sockfd: u32, addr: *mut structs::SockAddr, addrlen: u32) -> i32 {
+    let ret: i32;
+
+    asm!(
+    "syscall",
+    in("rax") numbers::GETSOCKNAME,
+    in("rdi") sockfd,
+    in("rsi") addr,
+    in("rdx") addrlen,
+    lateout("rax") ret,
+    lateout("rcx") _,
+    lateout("r11") _,
+    options(nostack),
+    );
+
+    ret
+}
+
 pub unsafe fn socketpair(domain: i32, stype: i32, protocol: i32, sv: *mut [i32; 2]) -> i32 {
     let ret: i32;
 
