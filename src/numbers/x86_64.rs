@@ -44,6 +44,7 @@ pub const SHUTDOWN      : u64 =  48;
 pub const BIND          : u64 =  49;
 pub const LISTEN        : u64 =  50;
 pub const GETSOCKNAME   : u64 =  51;
+pub const GETPEERNAME   : u64 =  52;
 pub const SOCKETPAIR    : u64  = 53;
 pub const FORK          : u64 =  57;
 pub const VFORK         : u64 =  58;
@@ -70,7 +71,6 @@ __NR_getitimer 36
 __NR_setitimer 38
 __NR_sendmsg 46
 __NR_recvmsg 47
-__NR_getpeername 52
 __NR_setsockopt 54
 __NR_getsockopt 55
 __NR_clone 56
