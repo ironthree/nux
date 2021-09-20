@@ -635,6 +635,35 @@ pub unsafe fn sendto(
     ret
 }
 
+// TODO: define recvfrom flags MSG_*
+pub unsafe fn recvfrom(
+    sockfd: u32,
+    buf: *mut u8,
+    len: usize,
+    flags: i32,
+    src_addr: *const structs::SockAddr,
+    addrlen: u32,
+) -> i64 {
+    let ret: i64;
+
+    asm!(
+    "syscall",
+    in("rax") numbers::RECVFROM,
+    in("rdi") sockfd,
+    in("rsi") buf,
+    in("rdx") len,
+    in("r10") flags,
+    in("r8") src_addr,
+    in("r9") addrlen,
+    lateout("rax") ret,
+    lateout("rcx") _,
+    lateout("r11") _,
+    options(nostack),
+    );
+
+    ret
+}
+
 // TODO: define shutdown flags SHUT_*
 pub unsafe fn shutdown(sockfd: u32, how: i32) -> i32 {
     let ret: i32;
