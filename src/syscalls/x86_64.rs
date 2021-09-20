@@ -588,6 +588,24 @@ pub unsafe fn connect(sockfd: u32, addr: *const structs::SockAddr, addrlen: u32)
     ret
 }
 
+pub unsafe fn accept(sockfd: u32, addr: *mut structs::SockAddr, addrlen: u32) -> i32 {
+    let ret: i32;
+
+    asm!(
+    "syscall",
+    in("rax") numbers::ACCEPT,
+    in("rdi") sockfd,
+    in("rsi") addr,
+    in("rdx") addrlen,
+    lateout("rax") ret,
+    lateout("rcx") _,
+    lateout("r11") _,
+    options(nostack),
+    );
+
+    ret
+}
+
 // TODO: define shutdown flags SHUT_*
 pub unsafe fn shutdown(sockfd: u32, how: i32) -> i32 {
     let ret: i32;

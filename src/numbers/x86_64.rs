@@ -37,6 +37,7 @@ pub const GETPID        : u64 =  39;
 pub const SENDFILE      : u64 =  40;
 pub const SOCKET        : u64 =  41;
 pub const CONNECT       : u64 =  42;
+pub const ACCEPT        : u64 =  43;
 pub const SHUTDOWN      : u64 =  48;
 pub const LISTEN        : u64 =  50;
 pub const SOCKETPAIR    : u64  = 53;
@@ -63,7 +64,6 @@ __NR_shmctl 31
 __NR_nanosleep 35
 __NR_getitimer 36
 __NR_setitimer 38
-__NR_accept 43
 __NR_sendto 44
 __NR_recvfrom 45
 __NR_sendmsg 46
