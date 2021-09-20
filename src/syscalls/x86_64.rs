@@ -606,6 +606,35 @@ pub unsafe fn accept(sockfd: u32, addr: *mut structs::SockAddr, addrlen: u32) ->
     ret
 }
 
+// TODO: define sendto flags MSG_*
+pub unsafe fn sendto(
+    sockfd: u32,
+    buf: *const u8,
+    len: usize,
+    flags: i32,
+    dest_addr: *const structs::SockAddr,
+    addrlen: u32,
+) -> i64 {
+    let ret: i64;
+
+    asm!(
+    "syscall",
+    in("rax") numbers::SENDTO,
+    in("rdi") sockfd,
+    in("rsi") buf,
+    in("rdx") len,
+    in("r10") flags,
+    in("r8") dest_addr,
+    in("r9") addrlen,
+    lateout("rax") ret,
+    lateout("rcx") _,
+    lateout("r11") _,
+    options(nostack),
+    );
+
+    ret
+}
+
 // TODO: define shutdown flags SHUT_*
 pub unsafe fn shutdown(sockfd: u32, how: i32) -> i32 {
     let ret: i32;
