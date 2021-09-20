@@ -15,6 +15,7 @@ type __ino_t = u64;
 type __mode_t = u32;
 type __nlink_t = u64;
 type __off_t = i64;
+type __sa_family_t = u16;
 type __time_t = i64;
 type __uid_t = u32;
 
@@ -43,4 +44,11 @@ pub struct Stat {
     pub st_ctime_nsec: u64,
 
     pub(crate) __unused: [i64; 3],
+}
+
+#[repr(C)]
+#[derive(Debug)]
+pub struct SockAddr {
+    sa_family: __sa_family_t,
+    sa_data: [u8; 14],
 }

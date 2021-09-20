@@ -5,6 +5,8 @@
 //! arguments), with return values that are easy to check for errors, and
 //! that don't have any unwanted side effects.
 
+mod common;
+
 #[cfg(target_arch = "x86_64")]
 mod x86_64;
 

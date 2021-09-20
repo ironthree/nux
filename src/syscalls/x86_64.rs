@@ -570,6 +570,24 @@ pub unsafe fn socket(domain: i32, stype: i32, protocol: i32) -> i32 {
     ret
 }
 
+pub unsafe fn connect(sockfd: u32, addr: *const structs::SockAddr, addrlen: u32) -> i32 {
+    let ret: i32;
+
+    asm!(
+    "syscall",
+    in("rax") numbers::CONNECT,
+    in("rdi") sockfd,
+    in("rsi") addr,
+    in("rdx") addrlen,
+    lateout("rax") ret,
+    lateout("rcx") _,
+    lateout("r11") _,
+    options(nostack),
+    );
+
+    ret
+}
+
 // TODO: define shutdown flags SHUT_*
 pub unsafe fn shutdown(sockfd: u32, how: i32) -> i32 {
     let ret: i32;
