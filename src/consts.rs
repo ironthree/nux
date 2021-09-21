@@ -83,4 +83,28 @@ pub const SEEK_DATA: i32 = 3;
 /// than or equal to `offset` and that does not contain data ("hole")
 pub const SEEK_HOLE: i32 = 4;
 
+/// there is data to read
+pub const POLLIN        : i16 = 0x0001;
+/// there is urgent data to read
+pub const POLLPRI       : i16 = 0x0002;
+/// writing now will not block
+pub const POLLOUT       : i16 = 0x0004;
+/// error condition
+pub const POLLERR       : i16 = 0x0008;
+/// hung up
+pub const POLLHUP       : i16 = 0x0010;
+/// invalid polling request
+pub const POLLNVAL      : i16 = 0x0020;
+/// normal data may be read
+pub const POLLRDNORM    : i16 = 0x0040;
+/// priority data may be read
+pub const POLLRDBAND    : i16 = 0x0080;
+/// writing now will not block
+pub const POLLWRNORM    : i16 = 0x0100;
+/// priority data may be written
+pub const POLLWRBAND    : i16 = 0x0200;
+pub const POLLMSG       : i16 = 0x0400;
+pub const POLLREMOVE    : i16 = 0x1000;
+pub const POLLRDHUP     : i16 = 0x2000;
+
 pub const AT_FDCWD: i32 = -100;

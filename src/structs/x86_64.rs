@@ -19,6 +19,19 @@ type __sa_family_t = u16;
 type __time_t = i64;
 type __uid_t = u32;
 
+/// Data structure describing a polling request, defined as `struct pollfd`
+/// in the linux kernel header file `<sys/poll.h>`.
+#[repr(C)]
+#[derive(Debug)]
+pub struct PollFd {
+    /// file descriptor to poll
+    pub fd: i32,
+    /// types of events poller cares about
+    pub events: i16,
+    /// types of events that actually occurred
+    pub revents: i16,
+}
+
 #[repr(C)]
 #[derive(Debug)]
 pub struct Stat {

@@ -144,6 +144,24 @@ pub unsafe fn lstat(filename: *const u8, statbuf: *mut structs::Stat) -> i32 {
     ret
 }
 
+pub unsafe fn poll(fds: *mut structs::PollFd, nfds: u64, timeout: i32) -> i32 {
+    let ret: i32;
+
+    asm!(
+    "syscall",
+    in("rax") numbers::POLL,
+    in("rdi") fds,
+    in("rsi") nfds,
+    in("rdx") timeout,
+    lateout("rax") ret,
+    lateout("rcx") _,
+    lateout("r11") _,
+    options(nostack),
+    );
+
+    ret
+}
+
 pub unsafe fn lseek(fd: u32, offset: i64, whence: i32) -> i64 {
     let ret: i64;
 

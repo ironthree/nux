@@ -10,6 +10,7 @@ pub const CLOSE         : u64 =   3;
 pub const STAT          : u64 =   4;
 pub const FSTAT         : u64 =   5;
 pub const LSTAT         : u64 =   6;
+pub const POLL          : u64 =   7;
 pub const LSEEK         : u64 =   8;
 pub const MMAP          : u64 =   9;
 pub const MPROTECT      : u64 =  10;
@@ -45,7 +46,7 @@ pub const BIND          : u64 =  49;
 pub const LISTEN        : u64 =  50;
 pub const GETSOCKNAME   : u64 =  51;
 pub const GETPEERNAME   : u64 =  52;
-pub const SOCKETPAIR    : u64  = 53;
+pub const SOCKETPAIR    : u64 =  53;
 pub const FORK          : u64 =  57;
 pub const VFORK         : u64 =  58;
 pub const EXECVE        : u64 =  59;
@@ -59,7 +60,6 @@ pub const OPENAT        : u64 = 257;
 // Not implemented (as of linux 5.13.15):
 
 /*
-__NR_poll 7
 __NR_rt_sigaction 13
 __NR_rt_sigprocmask 14
 __NR_rt_sigreturn 15
