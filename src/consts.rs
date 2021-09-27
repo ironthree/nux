@@ -107,4 +107,103 @@ pub const POLLMSG       : i16 = 0x0400;
 pub const POLLREMOVE    : i16 = 0x1000;
 pub const POLLRDHUP     : i16 = 0x2000;
 
+// TODO: check if these are architecture-dependent
+// defined in <bits/signum-arch.h> and <bits/signum-generic.h>
+/// hangup
+pub const SIGHUP        : i32 =  1;
+/// interactive attention signal
+pub const SIGINT        : i32 =  2;
+/// quit
+pub const SIGQUIT       : i32 =  3;
+/// illegal instruction
+pub const SIGILL        : i32 =  4;
+/// trace / breakpoint trap
+pub const SIGTRAP       : i32 =  5;
+/// abnormal termination
+pub const SIGABRT       : i32 =  6;
+/// bus error
+pub const SIGBUS        : i32 =  7;
+/// erroneous arithmetic operation
+pub const SIGFPE        : i32 =  8;
+/// killed
+pub const SIGKILL       : i32 =  9;
+/// user-defined signal 1
+pub const SIGUSR1       : i32 = 10;
+/// invalid access to storage
+pub const SIGSEGV       : i32 = 11;
+/// user-defined signal 2
+pub const SIGUSR2       : i32 = 12;
+/// broken pipe
+pub const SIGPIPE       : i32 = 13;
+/// alarm clock
+pub const SIGALRM       : i32 = 14;
+/// termination request
+pub const SIGTERM       : i32 = 15;
+/// stack fault (obsolete)
+pub const SIGSTKFLT     : i32 = 16;
+/// child terminated or stopped
+pub const SIGCHLD       : i32 = 17;
+/// continue
+pub const SIGCONT       : i32 = 18;
+/// stop, unblockable
+pub const SIGSTOP       : i32 = 19;
+/// keyboard stop
+pub const SIGTSTP       : i32 = 20;
+/// background read from control terminal
+pub const SIGTTIN       : i32 = 21;
+/// background write to control terminal
+pub const SIGTTOU       : i32 = 22;
+/// urgent data is available at a socket
+pub const SIGURG        : i32 = 23;
+/// CPU time limit exceeded
+pub const SIGXCPU       : i32 = 24;
+/// file size limit exceeded
+pub const SIGXFSZ       : i32 = 25;
+/// virtual timer expired
+pub const SIGVTALRM     : i32 = 26;
+/// profiling timer expired
+pub const SIGPROF       : i32 = 27;
+/// window size change (4.3 BSD, Sun)
+pub const SIGWINCH      : i32 = 28;
+/// pollable event occurred (System V)
+pub const SIGPOLL       : i32 = 29;
+/// power failure imminent
+pub const SIGPWR        : i32 = 30;
+/// bad system call
+pub const SIGSYS        : i32 = 31;
+/// I/O now possible (4.2 BSD)
+pub const SIGIO         : i32 = SIGPOLL;
+/// IOT instruction, abort() on a PDP-11
+pub const SIGIOT        : i32 = SIGABRT;
+/// old System V name
+pub const SIGCLD        : i32 = SIGCHLD;
+
+/// don't send SIGCHLD when children stop
+pub const SA_NOCLDSTOP  : i32 = 0x00000001;
+/// don't create zombie on child death
+pub const SA_NOCLDWAIT  : i32 = 0x00000002;
+/// invoke signal-catching function with three arguments instead of one
+pub const SA_SIGINFO    : i32 = 0x00000004;
+/// use signal stack by using `sa_restorer'
+pub const SA_ONSTACK    : i32 = 0x08000000;
+/// restart syscall on signal return
+pub const SA_RESTART    : i32 = 0x10000000;
+/// historical no-op
+pub const SA_INTERRUPT  : i32 = 0x20000000;
+/// don't automatically block the signal when its handler is being executed
+pub const SA_NODEFER    : i32 = 0x40000000;
+/// reset to `SIG_DFL` on entry to handler
+pub const SA_RESETHAND  : i32 = 0x80000000u32 as i32;
+pub const SA_NOMASK     : i32 = SA_NODEFER;
+pub const SA_ONESHOT    : i32 = SA_RESETHAND;
+pub const SA_STACK      : i32 = SA_ONSTACK;
+
+/// block signals
+pub const SIG_BLOCK     : i32 = 0;
+/// unblock signals
+pub const SIG_UNBLOCK   : i32 = 1;
+/// set the set of blocked signals
+pub const SIG_SETMASK   : i32 = 2;
+
+/// special file descriptor that refers to the current working directory
 pub const AT_FDCWD: i32 = -100;

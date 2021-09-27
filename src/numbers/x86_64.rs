@@ -16,6 +16,8 @@ pub const MMAP          : u64 =   9;
 pub const MPROTECT      : u64 =  10;
 pub const MUNMAP        : u64 =  11;
 pub const BRK           : u64 =  12;
+pub const RT_SIGACTION  : u64 =  13;
+pub const RT_SIGRETURN  : u64 =  15;
 pub const IOCTL         : u64 =  16;
 // renamed pread -> pread64 in linux 2.6
 pub const PREAD64       : u64 =  17;
@@ -60,9 +62,7 @@ pub const OPENAT        : u64 = 257;
 // Not implemented (as of linux 5.13.15):
 
 /*
-__NR_rt_sigaction 13
 __NR_rt_sigprocmask 14
-__NR_rt_sigreturn 15
 __NR_readv 19
 __NR_writev 20
 __NR_select 23

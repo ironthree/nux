@@ -254,6 +254,35 @@ pub unsafe fn brk(addr: *mut u8) -> i32 {
     ret
 }
 
+// FIXME
+pub unsafe fn rt_sigaction(sig: i32, act: *const structs::SigAction, oact: *mut structs::SigAction) -> i32 {
+    let ret: i32;
+
+    asm!(
+    "syscall",
+    in("rax") numbers::RT_SIGACTION,
+    in("rdi") sig,
+    in("rsi") act,
+    in("rdx") oact,
+    in("r10") 128usize,
+    lateout("rax") ret,
+    lateout("rcx") _,
+    lateout("r11") _,
+    options(nostack),
+    );
+
+    ret
+}
+
+// FIXME
+pub unsafe fn rt_sigreturn() -> ! {
+    asm!(
+    "syscall",
+    in("rax") numbers::RT_SIGRETURN,
+    options(noreturn,nostack),
+    )
+}
+
 pub unsafe fn ioctl(fd: u32, cmd: u32, arg: u64) -> i32 {
     let ret: i32;
 

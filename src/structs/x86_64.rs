@@ -16,6 +16,8 @@ type __mode_t = u32;
 type __nlink_t = u64;
 type __off_t = i64;
 type __sa_family_t = u16;
+type __sa_restorer_t = unsafe extern "C" fn() -> !;
+type __sighandler_t = extern "C" fn(i32) -> ();
 type __time_t = i64;
 type __uid_t = u32;
 
@@ -30,6 +32,40 @@ pub struct PollFd {
     pub events: i16,
     /// types of events that actually occurred
     pub revents: i16,
+}
+
+global_asm!(
+    "
+    .global __restore_rt
+    __restore_rt:
+        mov rax, 15
+        syscall
+    "
+);
+
+extern "C" {
+    fn __restore_rt() -> !;
+}
+
+// FIXME
+#[repr(C)]
+pub struct SigAction {
+    pub sa_handler: __sighandler_t,
+    pub sa_flags: u64,
+    pub sa_restorer: __sa_restorer_t,
+    pub sa_mask: u64,
+}
+
+// FIXME
+impl SigAction {
+    pub fn new(handler: __sighandler_t, flags: u64, mask: u64) -> SigAction {
+        SigAction {
+            sa_handler: handler,
+            sa_flags: flags,
+            sa_restorer: __restore_rt,
+            sa_mask: mask,
+        }
+    }
 }
 
 #[repr(C)]
