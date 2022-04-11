@@ -13,13 +13,7 @@ fn main() {
 
     let sigaction = SigAction::new(alarm_handler, 0, 0);
 
-    let ret = unsafe {
-        syscalls::rt_sigaction(
-            nux::consts::SIGALRM,
-            &sigaction,
-            0 as *mut SigAction,
-        )
-    };
+    let ret = unsafe { syscalls::rt_sigaction(nux::consts::SIGALRM, &sigaction, 0 as *mut SigAction) };
 
     if ret < 0 {
         // FIXME: plz help if you know how to fix this

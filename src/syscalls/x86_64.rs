@@ -6,6 +6,8 @@
 //! Types of function arguments and return values match the linux kernel
 //! interface and / or the GNU libc implementations of these functions.
 
+use core::arch::asm;
+
 use crate::numbers;
 use crate::structs;
 

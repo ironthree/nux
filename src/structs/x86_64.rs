@@ -7,6 +7,8 @@
 
 #![allow(non_camel_case_types)]
 
+use core::arch::global_asm;
+
 type __blkcnt_t = i64;
 type __blksize_t = i64;
 type __dev_t = u64;

@@ -1,7 +1,4 @@
 #![cfg_attr(not(feature = "std"), no_std)]
-// https://doc.rust-lang.org/nightly/unstable-book/library-features/asm.html
-#![feature(asm)]
-#![feature(global_asm)]
 // allow missing Safety docs for unsafe fns for now
 #![allow(clippy::missing_safety_doc)]
 //#![warn(missing_docs)]
